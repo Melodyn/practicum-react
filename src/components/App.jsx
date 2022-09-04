@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import '../vendor/normalize.css';
 import '../pages/index.css';
 import { useEffect, useState } from 'react';
