@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import cn from 'classnames';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 const Card = ({
-  card,
+  card: sourceCard,
   onClick,
 }) => {
   const {
-    name, link, likes,
-  } = card;
-  const [liked, setLiked] = useState(false);
+    name, link, likes, owner,
+  } = sourceCard;
+  const currentUser = useContext(CurrentUserContext);
+  const card = {
+    ...sourceCard,
+    isOwner: (currentUser._id === owner._id),
+    liked: likes.some((liker) => liker._id === currentUser._id),
+  };
+  // так не надо делать, это пример для вебинара
+  const [liked, setLiked] = useState(card.liked);
 
   const className = cn('button', 'card__like', { card__like_liked: liked });
 
@@ -38,14 +46,19 @@ const Card = ({
               aria-label="Оценить"
               onClick={() => setLiked(!liked)}
             />
-            <span className="card__like-count">{likes.length + Number(liked)}</span>
+            {
+              /* Фрагмент " + Number(liked)" добавлен для примера, в проекте его быть не должно */
+              <span className="card__like-count">{likes.length + Number(liked)}</span>
+            }
           </div>
         </div>
-        <button
-          type="button"
-          className="button card__remove"
-          aria-label="Удалить"
-        />
+        {card.isOwner && (
+          <button
+            type="button"
+            className="button card__remove"
+            aria-label="Удалить"
+          />
+        )}
       </article>
     </li>
   );

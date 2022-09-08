@@ -35,12 +35,17 @@ export class Api {
       });
   }
 
+  /* profile */
+  getProfile() {
+    return this._fetch('users/me');
+  }
+
+  setInfo({ name, about }) {
+    return this._fetch('users/me', httpMethod.patch, { name, about });
+  }
+
+  /* cards */
   getCards() {
     return this._fetch('cards');
   }
-
-  // пример с передачей метода POST и body
-  // createCard({ name, link }) {
-  //   return this._fetch('cards', httpMethod.post, { name, link });
-  // }
 }

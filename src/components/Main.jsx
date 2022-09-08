@@ -1,11 +1,14 @@
+import { useContext } from 'react';
 import { Card } from './Card';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 const Main = (props) => {
   const {
     cards,
     onCardClick,
-    currentUser,
+    onEditProfile,
   } = props;
+  const currentUser = useContext(CurrentUserContext);
 
   const cardComponents = cards.map((card) => (
     <Card
@@ -36,6 +39,7 @@ const Main = (props) => {
           type="button"
           className="button profile__edit"
           aria-label="Редактировать"
+          onClick={onEditProfile}
         />
         <p className="profile__subtitle">{currentUser.about}</p>
         <button
