@@ -37,7 +37,6 @@ const PopupEditProfile = (props) => {
           placeholder="Название профиля"
           minLength="2"
           maxLength="40"
-          tabIndex="1"
           value={name}
           required
           onFocus={(e) => e.target.select()}
@@ -51,7 +50,6 @@ const PopupEditProfile = (props) => {
           placeholder="Описание профиля"
           minLength="2"
           maxLength="200"
-          tabIndex="2"
           value={about}
           required
           onFocus={(e) => e.target.select()}
