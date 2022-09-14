@@ -37,6 +37,33 @@ const App = () => {
   //     .catch(console.error);
   // }, []);
 
+  // // код для демонстрации роутинга
+  // const locationURL = new URL(document.location.href);
+  // const initSelectedCardId = locationURL.searchParams.has('image_id')
+  //   ? locationURL.searchParams.get('image_id')
+  //   : '';
+  // const initSelectedCard = cards.find(({ _id }) => _id === initSelectedCardId);
+  //
+  // const [selectedCard, setSelectedCard] = useState(initSelectedCard || {});
+  // const [openPopupName, setOpenPopupName] = useState('');
+  //
+  // useEffect(() => {
+  //   const isEmptySelectedCard = (Object.keys(selectedCard).length === 0);
+  //   if (!isEmptySelectedCard && openPopupName === '') {
+  //     setOpenPopupName('preview');
+  //   }
+  //
+  //   if (isEmptySelectedCard) {
+  //     locationURL.searchParams.delete('image_id');
+  //   } else {
+  //     locationURL.searchParams.set('image_id', selectedCard._id);
+  //   }
+  //
+  //   // eslint-disable-next-line
+  //   history.pushState({}, null, locationURL.toString());
+  // }, [selectedCard]);
+  // // ----
+
   const onClosePopup = () => {
     setOpenPopupName('');
   };
